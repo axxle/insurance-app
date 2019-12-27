@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar insurance/webapp-runner-9.0.27.0.jar --port $PORT insurance/build/libs/*.war

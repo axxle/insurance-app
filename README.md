@@ -15,4 +15,4 @@ insurance-app
 
 ./gradlew clean insurance-ui:copyFilesUI build && java -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n -Dfile.encoding=UTF8 -jar insurance/webapp-runner-9.0.27.0.jar --port 8080 insurance/build/libs/*.war
 
-Стенд на Heroku развернут тут https://insurance102.herokuapp.com
+Стенд на Heroku развернут тут https://insurance-app2.herokuapp.com/
