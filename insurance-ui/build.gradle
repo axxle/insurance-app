@@ -20,7 +20,7 @@ task copyPackageJson (type: Copy) {
     into "../"
 }
 
-npmInstall.dependsOn copyPackageJson
+//npmInstall.dependsOn copyPackageJson
 
 task copyFilesUI (type: Copy) {
     from "../insurance-ui/build"
