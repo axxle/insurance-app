@@ -1,0 +1,8 @@
+rootProject.name = 'insurance-app'
+
+
+include 'insurance-ui'
+project(':insurance-ui').projectDir = "$rootDir/insurance-ui" as File
+
+include 'insurance'
+project(':insurance').projectDir = "$rootDir/insurance" as File

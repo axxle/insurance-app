@@ -1,0 +1,34 @@
+apply plugin: "idea"
+apply plugin: "eclipse"
+
+subprojects {
+    apply plugin: "java"
+
+    tasks.withType(JavaCompile) {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+//processResources.dependsOn copyFilesUI
+
+/*
+task buildWithSubProject( type: Jar, dependsOn: Project1.tasks["build"] ) {
+
+task runUploader(type: GradleBuild) {
+  buildFile = 'uploader/build.gradle'  
+  tasks = ['run']  
+  startParameter.projectProperties = [jarDir: "/jardir"]
+}
+и добавить зависимости, чтобы эта задача вызывалась в нужный момент, например так:
+
+myTask.dependsOn runUploader
+
+*/
+//task wrapper(type: Wrapper) {
+//    gradleVersion = "5.6.2"
+//}
