@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+tasks.withType(Javadoc) { options.encoding = 'UTF-8' }
+tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
+tasks.withType(Test) { systemProperty "file.encoding", "UTF-8" }
+
+dependencies {
+	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.9.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.9.RELEASE'
+	compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.9.RELEASE'
+	compile group: 'org.postgresql', name: 'postgresql', version: '9.3-1102-jdbc41'
+	compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.0.1'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.0'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+	compile group: 'org.springframework', name: 'spring-context', version: '4.3.9.RELEASE'
+	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.2.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.0.2.Final'
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.9.RELEASE'
+}
+
+task stage() {
+    dependsOn clean, war
+}
+
+task copyForTestCustom (type: Copy) {
+    from file("src/main/resources/")
+    into "src/test/resources/"
+}
+task clearAfterTestCustom (type: Delete) {
+    delete("src/test/resources/")
+}
+
+test.dependsOn(copyForTestCustom)
+
+test.finalizedBy(clearAfterTestCustom)
+
+task copyWebInf (type: Copy) {
+    from "src/main/resources/"
+    into "../insurance/src/main/webapp/"
+}
+
+build.dependsOn copyWebInf
+war.dependsOn copyWebInf
+
+war.mustRunAfter clean
