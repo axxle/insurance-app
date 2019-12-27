@@ -27,7 +27,7 @@ class InsuranceApp extends React.Component {
     }
 
     handleClickByTable() {
-        let contractId = "какТоВыдернутьАйди";
+        let contractId = "112112"; //
         this.setState({
             selectedContractId: [contractId]
         });
