@@ -15,6 +15,13 @@ task bundle(type: NpmTask, dependsOn: npmInstall) {
  
 assemble.dependsOn(bundle)
 
+task copyPackageJson (type: Copy) {
+    from file("package.json")
+    into "../"
+}
+
+npmInstall.dependsOn copyPackageJson
+
 task copyFilesUI (type: Copy) {
     from "../insurance-ui/build"
     into "../insurance/src/main/webapp/"
