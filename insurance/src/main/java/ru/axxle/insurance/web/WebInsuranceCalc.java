@@ -3,17 +3,9 @@ package ru.axxle.insurance.web;
 import javax.validation.constraints.Pattern;
 
 public class WebInsuranceCalc {
-
-    public static final String insuranceAmountCheckPattern = "^([1-9]{1}[0-9]{0,})|[0]$";
-    public static final String insuranceAmountCheckMessage = "Возможен ввод только целого числа";
-    @Pattern (regexp = insuranceAmountCheckPattern, message = insuranceAmountCheckMessage)
-    private String insuranceAmount;
-
-    public static final String realtyTypeCheckPattern = "^квартира|комната|дом$";
-    public static final String realtyTypeCheckMessage = "Возможен ввод одного значения из списка: 'квартира', 'дом', 'комната'";
-    @Pattern (regexp = realtyTypeCheckPattern, message = realtyTypeCheckMessage)
+    private long insuranceAmount;
+    //private String realtyType;
     private String realtyType;
-
     public static final String realtyBuildYearCheckPattern = "^([1]{1}[0-9]{3})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})$"; //да, надо подумать получше решение
     public static final String realtyBuildYearCheckMessage = "Год должен быть четырехзначный и не больше текущего года";
     @Pattern (regexp = realtyBuildYearCheckPattern, message = realtyBuildYearCheckMessage)
@@ -48,7 +40,7 @@ public class WebInsuranceCalc {
 
     public WebInsuranceCalc() {}
 
-    public WebInsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
+    public WebInsuranceCalc(long insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -59,7 +51,7 @@ public class WebInsuranceCalc {
         this.insurancePremium = insurancePremium;
     }
 
-    public WebInsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate) {
+    public WebInsuranceCalc(long insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -69,12 +61,11 @@ public class WebInsuranceCalc {
     }
 
 
-
-    public String getInsuranceAmount() {
+    public long getInsuranceAmount() {
         return insuranceAmount;
     }
 
-    public void setInsuranceAmount(String insuranceAmount) {
+    public void setInsuranceAmount(long insuranceAmount) {
         this.insuranceAmount = insuranceAmount;
     }
 

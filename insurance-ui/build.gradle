@@ -21,6 +21,9 @@ task copyPackageJson (type: Copy) {
 }
 
 //npmInstall.dependsOn copyPackageJson
+task clearWebapp (type: Delete) {
+    delete("../insurance/src/main/webapp/")
+}
 
 task copyFilesUI (type: Copy) {
     from "../insurance-ui/build"

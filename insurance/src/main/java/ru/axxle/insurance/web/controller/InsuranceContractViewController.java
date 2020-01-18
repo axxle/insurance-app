@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.axxle.insurance.web.WebInsuranceContractView;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = InsuranceContractViewController.REQUEST_PATH)
 public class InsuranceContractViewController {
-	public static final String REQUEST_PATH = "/insurance/view";
+	public static final String REQUEST_PATH = "/insurance/view/contracts";
 	public static final String VIEW_ALL = "/";
 
 	@RequestMapping(
@@ -26,16 +28,27 @@ public class InsuranceContractViewController {
 	public @ResponseBody
 	ResponseEntity<List<WebInsuranceContractView>> getAll() {
 		List<WebInsuranceContractView> webInsuranceContractViewList = Arrays.asList(
-				new WebInsuranceContractView("112112",
-						new Date(),
-						"Иванов Иван Иваныч",
-						new BigDecimal("120000"),
-						"10.10.2019-09.10.2020"),
-				new WebInsuranceContractView("112113",
-						new Date(),
-						"Федоров Федор Федорович",
-						new BigDecimal("150000"),
-						"11.10.2019-10.10.2020"));
+				new WebInsuranceContractView(
+						1,
+						"000001",
+						"03.02.2015",
+						"Иванов Иван Иваныч2",
+						"1367,23",
+						"03.02.2015-02.08.2015"),
+				new WebInsuranceContractView(
+						2,
+						"000002",
+						"16.02.2015",
+						"Смирнов Петр Петрович2",
+						"2314,42",
+						"16.02.2015-15.07.2015"),
+				new WebInsuranceContractView(
+						3,
+						"000003",
+						"03.02.2015",
+						"Петров Петр Сергеевич2",
+						"1367,23",
+						"03.02.2015-02.08.2015"));
 		return new ResponseEntity<>(webInsuranceContractViewList, HttpStatus.OK);
 	}
 }

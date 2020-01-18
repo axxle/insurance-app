@@ -1,43 +1,45 @@
 package ru.axxle.insurance.web;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 public class WebInsuranceContractView {
-    private String contractId;
-    private Date contractDate;
+    private int contractId;
+    private String contractNumber;
+    private String contractDate;
     private String policyHolder;
-    private BigDecimal premium;
-    private String contractDuration;
+    private String insurancePremium;
+    private String policyDuration;
 
     public WebInsuranceContractView(){}
 
-    public WebInsuranceContractView(String contractId) {
+    public WebInsuranceContractView(int contractId, String contractNumber, String contractDate, String policyHolder, String insurancePremium, String policyDuration) {
         this.contractId = contractId;
-    }
-
-
-    public WebInsuranceContractView(String contractId, Date contractDate, String policyHolder, BigDecimal premium, String contractDuration) {
-        this.contractId = contractId;
+        this.contractNumber = contractNumber;
         this.contractDate = contractDate;
         this.policyHolder = policyHolder;
-        this.premium = premium;
-        this.contractDuration = contractDuration;
+        this.insurancePremium = insurancePremium;
+        this.policyDuration = policyDuration;
     }
 
-    public String getContractId() {
+    public int getContractId() {
         return contractId;
     }
 
-    public void setContractId(String contractId) {
+    public void setContractId(int contractId) {
         this.contractId = contractId;
     }
 
-    public Date getContractDate() {
+    public String getContractNumber() {
+        return contractNumber;
+    }
+
+    public void setContractNumber(String contractNumber) {
+        this.contractNumber = contractNumber;
+    }
+
+    public String getContractDate() {
         return contractDate;
     }
 
-    public void setContractDate(Date contractDate) {
+    public void setContractDate(String contractDate) {
         this.contractDate = contractDate;
     }
 
@@ -49,19 +51,19 @@ public class WebInsuranceContractView {
         this.policyHolder = policyHolder;
     }
 
-    public BigDecimal getPremium() {
-        return premium;
+    public String getInsurancePremium() {
+        return insurancePremium;
     }
 
-    public void setPremium(BigDecimal premium) {
-        this.premium = premium;
+    public void setInsurancePremium(String insurancePremium) {
+        this.insurancePremium = insurancePremium;
     }
 
-    public String getContractDuration() {
-        return contractDuration;
+    public String getPolicyDuration() {
+        return policyDuration;
     }
 
-    public void setContractDuration(String contractDuration) {
-        this.contractDuration = contractDuration;
+    public void setPolicyDuration(String policyDuration) {
+        this.policyDuration = policyDuration;
     }
 }
